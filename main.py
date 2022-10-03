@@ -4,7 +4,7 @@ import datetime as dt
 class Calculator:
     def __init__(self, limit):
         self.limit = limit
-        self.records = []
+        self.records = [] //расчет лимита
 
     def add_record(self, record):
         self.records.append(record)
@@ -15,7 +15,7 @@ class Calculator:
 
             if i.date == dt.date.today():
                 record_sum_day += i.amount
-        return record_sum_day
+        return record_sum_day //расчет калорий за день
 
     def get_week_stats(self):
         get_week_sum = 0
@@ -23,7 +23,7 @@ class Calculator:
             week = dt.timedelta(weeks=1)
             if i.date > (dt.date.today() - week):
                 get_week_sum += i.amount
-        return get_week_sum
+        return get_week_sum //расчет калорий за неделю
 
 
 class Record:
@@ -33,7 +33,7 @@ class Record:
         if date is not None:
             self.date = dt.datetime.strptime(date, '%d.%m.%Y').date()
         else:
-            self.date = dt.datetime.now().date()
+            self.date = dt.datetime.now().date() //запись даты
         
 class CashCalculator(Calculator):
     USD_RATE = 36.52
@@ -57,7 +57,7 @@ class CashCalculator(Calculator):
             return f'Денег нет! твой долг: '\
                    f'{abs(cash_rest)} {currency}'
         else:
-            return 'Денег нет!'
+            return 'Денег нет!' // расчет денег на которые ты можешь прожить
 
 
 class CaloriesCalculator(Calculator):
@@ -69,4 +69,4 @@ class CaloriesCalculator(Calculator):
             return f'Сегодня можно съесть что-нибудь ещё '\
                    f'с калорийностью не более {calories_rest} кКал'
         else:
-            return 'Хватит есть!'
+            return 'Хватит есть!' //рассчет правильности питания
